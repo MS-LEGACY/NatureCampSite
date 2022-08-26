@@ -1,0 +1,36 @@
+{
+  "name": "@maptiler/geocoder",
+  "version": "1.1.0",
+  "description": "Geographical search via MapTiler Cloud",
+  "keywords": [
+    "geocoder",
+    "geocoding",
+    "maptiler",
+    "cloud",
+    "autocomplete",
+    "geojson"
+  ],
+  "license": "BSD-2-Clause",
+  "repository": "github:maptiler/geocoder",
+  "scripts": {
+    "start": "webpack-dev-server --host 0.0.0.0 --content-base demo --mode development --hot --inline",
+    "build": "webpack --mode production"
+  },
+  "author": "MapTiler Team",
+  "main": "src/geocoder.js",
+  "dependencies": {
+    "autocompleter": "4.0.2",
+    "core-js": "3.1.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.4",
+    "@babel/preset-env": "^7.5.4",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.0.0",
+    "mini-css-extract-plugin": "^0.7.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.5",
+    "webpack-dev-server": "^3.7.2"
+  }
+}
