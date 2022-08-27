@@ -1,6 +1,6 @@
 const Campground = require('../models/campground');
 const { cloudinary } = require('../cloudinary');
-const Geocoder = require('@maptiler/geocoder');
+const Geocoder = require('../@maptiler-improved/geocoder');
 const geocoder = new Geocoder({
     key: process.env.MAPTILER_GEOCODER
 });
@@ -15,6 +15,7 @@ module.exports.newCampground = (req, res) => {
 
 module.exports.makeNewCampground = async (req, res, next) => {
     let geoData = await geocoder.geocode(req.body.campground.location);
+    console.log('GeoData\n()()()()()\n', geoData);
     const campground = new Campground(req.body.campground);
     if (Array.isArray(geoData.features[0].geometry.coordinates[0])) {
         geoData.features[0].geometry.type = 'Point'
