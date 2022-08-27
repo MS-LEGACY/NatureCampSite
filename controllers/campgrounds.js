@@ -15,9 +15,18 @@ module.exports.newCampground = (req, res) => {
 
 module.exports.makeNewCampground = async (req, res, next) => {
     let geoData = await geocoder.geocode(req.body.campground.location);
-    console.log('GeoData\n()()()()()\n', geoData);
     const campground = new Campground(req.body.campground);
-    if (Array.isArray(geoData.features[0].geometry.coordinates[0])) {
+    if (geoData.features[0].geometry.geometries) {
+        geoData.features[0].geometry.type = 'Point'
+        if (Array.isArray(geoData.features[0].geometry.geometries[0].coordinates[0])) {
+            geoData.features[0].geometry.coordinates = geoData.features[0].geometry.geometries[0].coordinates[0];
+        }
+        else {
+            geoData.features[0].geometry.coordinates = geoData.features[0].geometry.geometries[0].coordinates;
+        }
+
+    }
+    else if (Array.isArray(geoData.features[0].geometry.coordinates[0])) {
         geoData.features[0].geometry.type = 'Point'
         geoData.features[0].geometry.coordinates = geoData.features[0].geometry.coordinates[0];
     }
